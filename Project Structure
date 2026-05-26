@@ -15,3 +15,80 @@ centene-care-connector/
 │               └── Integration_Log__c/
 ├── sfdx-project.json
 └── README.md
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Salesforce DX CLI installed
+- Salesforce Developer or Sandbox org
+- Named Credential configured for your EHR endpoint
+
+### Setup
+
+```bash
+# Clone the repo
+git clone https://github.com/Nehanth0504/centene-care-connector.git
+cd centene-care-connector
+
+# Authenticate to your org
+sf org login web --alias my-org
+
+# Push source to org
+sf project deploy start --target-org my-org
+
+# Run all tests
+sf apex run test --target-org my-org --code-coverage
+```
+
+---
+
+## 💻 Core Classes
+
+### `MemberEligibilityService.cls`
+Handles real-time eligibility verification callouts to external payer systems. Implements retry logic, error handling, and audit logging.
+
+### `CareConnectorCalloutService.cls`
+Generic HTTP callout framework with Named Credentials, OAuth token refresh, and structured error responses.
+
+### `PlatformEventPublisher.cls`
+Publishes `MemberEligibilityEvent__e` platform events for async downstream processing via MuleSoft.
+
+### `RetryQueueable.cls`
+Exponential backoff retry pattern for failed integration callouts using Queueable Apex.
+
+---
+
+## 🧪 Test Coverage
+
+| Class | Coverage |
+|-------|----------|
+| MemberEligibilityService | 94% |
+| CareConnectorCalloutService | 91% |
+| IntegrationLogService | 88% |
+| PlatformEventPublisher | 96% |
+| **Overall** | **92%** |
+
+---
+
+## 📚 Key Patterns Used
+
+- **Named Credentials + External Credentials** — zero hardcoded secrets
+- **Platform Events** — decoupled async integration
+- **Queueable chaining** — retry with exponential backoff
+- **Selector / Service / Domain** layered architecture
+
+---
+
+## 👤 Author
+
+**Nehanth Yarlagadda**  
+[LinkedIn](https://www.linkedin.com/in/nehanthyarlagadda/) · [Trailblazer](https://www.salesforce.com/trailblazer/nchowdary62)
+
+---
+
+## 📄 License
+
+MIT
