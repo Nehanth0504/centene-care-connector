@@ -1,0 +1,11 @@
+Salesforce Service Cloud
+│
+├── Platform Events (MemberEligibilityEvent__e)
+│         │
+│    MuleSoft ESB
+│         │
+├── REST API Callouts (Named Credentials)
+│         │
+│   EHR System (HL7/FHIR)
+│
+└── Audit Log (Integration_Log__c)
